@@ -1,0 +1,29 @@
+<%= form_for [:admin, @album], :html => { :class => 'form-horizontal' } do |f| %>
+    <% if @album.errors.any? %>
+    <div>
+      <ul class="unstyled well-small alert-error">
+        <% for message in @album.errors.full_messages %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <%= f.hidden_field :id %>
+    <div class="control-group">
+        <%= f.label :name, '相册名称', :class => "control-label" %>
+        <div class="controls"><%= f.text_field :name, :class => 'span8' %></div>
+    </div>
+    <div class="control-group">
+      <%= f.label :seo_url, 'SEO Url', :class => "control-label" %>
+      <div class="controls"><%= f.text_field :seo_url, :class => 'span8' %></div>
+    </div>
+    <div class="control-group">
+      <%= f.label :description, '相册描述', :class => "control-label" %>
+      <div class="controls"><%= f.text_area :description, "rows" => 4, 'class' => 'span8' %></div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit '提交', :class => 'btn btn-primary' %>
+      <a href="<%= admin_albums_url %>"><i class="icon-share-alt"></i>返回相册管理</a>
+    </div>
+<% end %>

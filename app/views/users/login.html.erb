@@ -1,0 +1,29 @@
+<%= form_for @user, :url => login_url, :html => { :class => 'form-horizontal box' } do |f| %>
+    <legend>登录<div class="pull-right">还没账号？<a href="<%= signup_url %>">注册</a></div></legend>
+    <% if flash[:alert]%>
+        <div class="alert"><%=  flash[:alert] %></div>
+    <% end %>
+    <% if @user.errors.any? %>
+    <div>
+      <ul class="unstyled well-small alert-error">
+        <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <input type="hidden" name="return" value="<%= params[:url] || params[:return] %>">
+    <div class="control-group">
+      <%= f.label :email, '邮箱', :class => "control-label" %>
+      <div class="controls"><%= f.text_field :email %></div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password, '密码', :class => "control-label" %>
+      <div class="controls"><%= f.password_field :password %></div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit '登录', :class => 'btn btn-primary' %>
+    </div>
+<% end %>

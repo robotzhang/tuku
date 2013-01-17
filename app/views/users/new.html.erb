@@ -1,0 +1,36 @@
+<%= form_for @user, :html => { :class => 'form-horizontal box' } do |f| %>
+    <legend>创建账号<div class="pull-right">已有账号？<a href="<%= login_url %>">请登陆</a></div></legend>
+    <% if @user.errors.any? %>
+    <div>
+      <ul class="unstyled well-small alert-error">
+        <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="control-group">
+      <%= f.label :nickname, '名号', :class => "control-label" %>
+      <div class="controls"><%= f.text_field :nickname %></div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :email, '邮箱', :class => "control-label" %>
+      <div class="controls"><%= f.text_field :email %></div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password, '密码', :class => "control-label" %>
+      <div class="controls"><%= f.password_field :password %></div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password_confirmation, '确认密码', :class => "control-label" %>
+      <div class="controls"><%= f.password_field :password_confirmation %></div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit '注册', :class => 'btn btn-primary' %>
+    </div>
+<% end %>

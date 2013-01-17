@@ -1,0 +1,20 @@
+<%= form_for [:admin, @image], :html => { :class => 'form-horizontal' } do |f| %>
+    <input type="hidden" name="album_id" value="<%= params[:album_id] %>" />
+    <%= f.hidden_field :id %>
+    <div class="control-group">
+        <%= f.label :name, '图片名称', :class => "control-label" %>
+        <div class="controls"><%= f.text_field :title, :class => 'span8' %></div>
+    </div>
+    <div class="control-group">
+      <%= f.label :description, '图片描述', :class => "control-label" %>
+      <div class="controls"><%= f.text_area :description, "rows" => 4, 'class' => 'span8' %></div>
+    </div>
+    <div class="control-group">
+      <%= f.label :source_url, '来源地址', :class => "control-label" %>
+      <div class="controls"><%= f.text_field :source_url, 'class' => 'span8' %></div>
+    </div>
+    <div class="form-actions">
+      <%= f.submit '提交', :class => 'btn btn-primary' %>
+      <a href="<%= admin_images_url %>"><i class="icon-share-alt"></i>返回相册管理</a>
+    </div>
+<% end %>

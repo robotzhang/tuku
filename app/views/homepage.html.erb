@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <% @albums.each do |album| %>
+      <div class="box">
+        <p><a href="<%= album_url(album.seo_url) %>"><%= album.name %></a></p>
+        <div><img src="<%= album.images[0].url %>" /></div>
+      </div>
+      <% end %>
+
+      <%= paginate @albums %>
+    </div>
+    <div class="span3">
+      <% if current_user %>
+      <div class="box mb20">
+        <div>欢迎回来：<%= current_user.nickname %></div>
+      </div>
+      <% else %>
+      <div class="box mb20">
+        <div><small style="color: #ccc;">登录的好处？呵呵，你懂的...</small></div>
+        <div><a class="btn btn-success" href="<%= login_url(:url => request.url) %>">马上登录</a> <a href="<%= signup_url %>">注册</a></div>
+      </div>
+      <% end %>
+
+      <div class="box mb20">
+        <p>嘿，广告！</p>
+        <div></div>
+      </div>
+
+      <div class="box">
+        <p>功能由你定！</p>
+        <ol>
+          <li>增加喜欢功能</li>
+          <li>我要下载！</li>
+          <li>套图播放模式！</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>

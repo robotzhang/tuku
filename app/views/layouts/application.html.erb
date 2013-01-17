@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <title>真美社区</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= yield(:stylesheet) %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render :partial => 'common/header' %>
+  <div class="container warp">
+    <%= yield %>
+  </div>
+  <%= render :partial => 'common/footer' %>
+</body>
+</html>

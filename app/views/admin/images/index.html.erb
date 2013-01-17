@@ -1,0 +1,34 @@
+<div class="mb10">
+  <a class="btn" href="<%= url_for(:controller => 'admin/images', :action => 'new') %>"><i class="icon-plus-sign"></i> 添加图片</a>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>图片名称</th>
+    <th>图片描述</th>
+    <th>创建时间</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @images.each do |image| %>
+  <tr>
+    <td><%= image.id %></td>
+    <td><%= image.title %></td>
+    <td><%= image.description %></td>
+    <td><%= image.created_at.to_date %></td>
+    <td>
+      <a href="<%= edit_polymorphic_url([:admin, image]) %>"><i class="icon-edit"></i>编辑</a>
+      |
+      <%= link_to content_tag(:i, '', 'class'=>'icon-remove-sign')+"删除", admin_image_path(image), :confirm => "确定删除?", :method=>:delete %>
+      |
+      <a href="<%= admin_images_url(:image_id => image.id) %>"><i class="icon-th"></i>图片</a>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @images %>

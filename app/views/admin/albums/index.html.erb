@@ -1,0 +1,34 @@
+<div class="mb10">
+  <a class="btn" href="<%= url_for(:controller => 'admin/albums', :action => 'new') %>"><i class="icon-plus-sign"></i> 添加相册</a>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>相册名称</th>
+    <th>相册描述</th>
+    <th>创建时间</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @albums.each do |album| %>
+  <tr>
+    <td><%= album.id %></td>
+    <td><%= album.name %></td>
+    <td><%= album.description %></td>
+    <td><%= album.created_at.to_date %></td>
+    <td>
+      <a href="<%= edit_polymorphic_url([:admin, album]) %>"><i class="icon-edit"></i>编辑</a>
+      |
+      <%= link_to content_tag(:i, '', 'class'=>'icon-remove-sign')+"删除", admin_album_path(album), :confirm => "确定删除?", :method=>:delete %>
+      |
+      <a href="<%= admin_album_url(album) %>"><i class="icon-th"></i>图片</a>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @albums %>

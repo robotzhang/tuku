@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <title>-管理-</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <style type="text/css">
+    body { background: #fff; }
+  </style>
+</head>
+<body>
+    <div>
+        <% if current_user %>
+        <div class="pull-right" style="padding: 10px;;">
+          欢迎：<%= current_user.nickname %><small><%= current_user.role %></small>
+          -
+          <a href="<%= logout_url %>">退出</a>
+          -
+          <a href="<%= root_url %>">网站首页</a>
+        </div>
+        <% end %>
+        <ul class="nav nav-tabs" style="padding: 10px 20px; padding-bottom: 0;;">
+            <li<%= ' class=active' if params[:controller] == 'admin/albums' %>><a href="<%= url_for(:controller => 'admin/albums') %>">相册管理</a></li>
+        </ul>
+    </div>
+    <div style="padding: 0 10px;">
+      <%= yield %>
+    </div>
+    <div></div>
+</body>
+</html>
